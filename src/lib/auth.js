@@ -10,6 +10,18 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
+    sendResetPassword: async ({ user, url, token }, request) => {
+      void resend.email.send({
+        to: user.email,
+        from: "Acme <onboarding@resend.dev>",
+        subject: "Verify Your Email Address",
+        html: `<div class="text-center p-4">
+                <p class="text-gray-600">Please verify your email address.</p>
+                <a href="${url}" class="text-blue-600 font-semibold underline">Verify Email</a>
+                <p>Ignore this message if you haven't requested this!</>
+              </div>`,
+      });
+    },
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
@@ -17,7 +29,7 @@ export const auth = betterAuth({
         to: user.email,
         from: "Acme <onboarding@resend.dev>",
         subject: "Verify Your Email Address",
-        html:`<div class="text-center p-4">
+        html: `<div class="text-center p-4">
                 <p class="text-gray-600">Please verify your email address.</p>
                 <a href="${url}" class="text-blue-600 font-semibold underline">Verify Email</a>
               </div>`,
@@ -25,7 +37,7 @@ export const auth = betterAuth({
     },
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
-    expiresIn: 7*24*3600
+    expiresIn: 7 * 24 * 3600,
   },
 
   socialProviders: {
