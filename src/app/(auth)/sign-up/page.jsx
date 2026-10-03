@@ -20,7 +20,7 @@ const SignUpPage = () => {
             password: data.password,
         });
 
-        console.log(resData, error);
+        console.log('After sign up: ',resData, error);
     };
 
     // For Google Sign In

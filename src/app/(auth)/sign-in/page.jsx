@@ -10,6 +10,7 @@ import {
     Input,
     InputGroup,
     Label,
+    Link,
     TextField,
 } from "@heroui/react";
 import { useState } from "react";
@@ -141,6 +142,8 @@ const SignInPage = () => {
                     </Button>
                 </div>
             </Form>
+
+            <p><small>Forgot Password? <Link href="/forgot-password" className="text-blue-400 underline">Click Here</Link></small></p>
         </div>
     );
 };
